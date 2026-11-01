@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mundo 1 — Cortafuegos de Rendimientos</title>
+  <style>
+    :root {
+      --bg-color: #0d1117;
+      --card-bg: #161b22;
+      --accent-neon: #00f2fe;
+      --accent-green: #00ff87;
+      --accent-red: #ff4757;
+      --text-main: #c9d1d9;
+      --border-color: #30363d;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); padding: 20px; }
+
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 2px solid var(--accent-neon); padding-bottom: 15px; margin-bottom: 25px;
+    }
+    .badge { background: #1f6beb; color: #fff; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; }
+    .btn-secondary { background: var(--border-color); color: var(--text-main); border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    .btn-secondary:hover { background: #484f58; }
+
+    .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+    .card {
+      background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.2s, border-color 0.2s;
+    }
+    .card.unlocked { border-color: var(--accent-green); }
+    .card h3 { color: var(--accent-neon); margin-bottom: 10px; display: flex; justify-content: space-between; }
+    .card p { font-size: 0.95rem; line-height: 1.4; margin-bottom: 15px; }
+
+    .input-group { display: flex; gap: 10px; }
+    input[type="text"] {
+      flex: 1; background: #0d1117; border: 1px solid var(--border-color); color: var(--accent-neon);
+      padding: 10px; border-radius: 6px; font-size: 1rem; font-weight: bold; letter-spacing: 1px;
+    }
+    .btn-action { background: var(--accent-neon); color: #000; border: none; padding: 10px 18px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+    .btn-action:hover { opacity: 0.9; }
+
+    .feedback { font-size: 0.85rem; margin-top: 8px; font-weight: bold; }
+    .feedback.error { color: var(--accent-red); }
+    .feedback.success { color: var(--accent-green); }
+
+    /* Modal Teórico */
+    .modal-overlay {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 1000;
+    }
+    .modal-content {
+      background: var(--card-bg); border: 1px solid var(--accent-neon); width: 90%; max-width: 650px;
+      max-height: 85vh; overflow-y: auto; border-radius: 12px; padding: 25px; position: relative;
+    }
+    .close-btn { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+    .formula-box { background: #0d1117; padding: 12px; border-left: 4px solid var(--accent-neon); margin: 10px 0; font-family: monospace; }
+
+    /* Victory Banner */
+    #victory-banner {
+      display: none; background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc);
+      color: #fff; padding: 20px; border-radius: 10px; text-align: center; margin-bottom: 25px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <span class="badge">MUNDO 1</span>
+      <h2 style="margin-top: 5px;">Cortafuegos de Rendimientos</h2>
+    </div>
+    <div>
+      <button class="btn-secondary" onclick="openModal()">📖 Manual Financiero</button>
+      <button class="btn-secondary" onclick="location.href='index.html'">🏠 Volver al Mapa</button>
+    </div>
+  </header>
+
+  <div id="victory-banner">
+    <h2>🎉 ¡CORTAFUEGOS 1 DESBLOQUEADO!</h2>
+    <p style="margin: 10px 0;">Has generado la primera clave de acceso para la Bóveda Central:</p>
+    <h3 style="font-size: 2rem; letter-spacing: 3px; color: #00ff87;">CLAVE: ALPHA-7959</h3>
+    <button class="btn-action" style="margin-top: 15px;" onclick="location.href='index.html'">Avanzar al Mundo 2</button>
+  </div>
+
+  <main class="grid-container">
+
+    <!-- DESAFÍO 1 -->
+    <div class="card" id="card-1">
+      <h3>🔒 Candado 1: Crecimiento Lineal <span id="status-1">❌</span></h3>
+      <p>Un bot intentó congelar $4.000 durante 2 meses a una tasa de interés simple del 5% mensual. Hallá el interés ganado ($I$) y el capital final ($C_f$).</p>
+      <p><em>Ingresá el valor del interés ($I$) seguido del capital final ($C_f$) sin espacios ni signos.</em></p>
+      <div class="input-group">
+        <input type="text" id="code-1" placeholder="Ej: 100200">
+        <button class="btn-action" onclick="checkCode(1, '4004400')">Validar</button>
+      </div>
+      <div class="feedback" id="fb-1"></div>
+    </div>
+
+    <!-- DESAFÍO 2 -->
+    <div class="card" id="card-2">
+      <h3>🔒 Candado 2: Rendimiento Exponencial <span id="status-2">❌</span></h3>
+      <p>Compará hacer rendir $1.000 por 3 meses al 20% mensual entre interés simple e interés compuesto ($C_f = C_i(1+r)^n$).</p>
+      <p><em>Ingresá la diferencia exacta en pesos ($C_{f,\text{compuesto}} - C_{f,\text{simple}}$).</em></p>
+      <div class="input-group">
+        <input type="text" id="code-2" placeholder="Ej: 50">
+        <button class="btn-action" onclick="checkCode(2, '128')">Validar</button>
+      </div>
+      <div class="feedback" id="fb-2"></div>
+    </div>
+
+    <!-- DESAFÍO 3 -->
+    <div class="card" id="card-3">
+      <h3>🔒 Candado 3: TNA vs. TEA <span id="status-3">❌</span></h3>
+      <p>Una app ofrece una TNA del 60% anual con capitalización mensual ($m=12$). Calculá la Tasa Efectiva Anual ($\text{TEA} = (1+r)^m - 1$).</p>
+      <p><em>Ingresá el valor porcentual redondeado a dos decimales sin coma ni % (ej: 79,59% ➔ 7959).</em></p>
+      <div class="input-group">
+        <input type="text" id="code-3" placeholder="Ej: 7500">
+        <button class="btn-action" onclick="checkCode(3, '7959')">Validar</button>
+      </div>
+      <div class="feedback" id="fb-3"></div>
+    </div>
+
+    <!-- DESAFÍO 4 -->
+    <div class="card" id="card-4">
+      <h3>🔒 Candado 4: Despeje del Tiempo <span id="status-4">❌</span></h3>
+      <p>Depositás $38.000 a una TNA del 9% con capitalización mensual ($r=0,0075$). ¿En cuántos meses alcanzás un capital final de $55.833?</p>
+      <p><em>Multiplicá la cantidad de meses obtenidos por 10 e ingresá el número entero resultante.</em></p>
+      <div class="input-group">
+        <input type="text" id="code-4" placeholder="Ej: 500">
+        <button class="btn-action" onclick="checkCode(4, '515')">Validar</button>
+      </div>
+      <div class="feedback" id="fb-4"></div>
+    </div>
+
+  </main>
+
+  <!-- MODAL MANUAL FINANCIERO -->
+  <div class="modal-overlay" id="theory-modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <h2 style="color: var(--accent-neon); margin-bottom: 15px;">📖 Manual de Teoría Financiera</h2>
+
+      <h3>1. Elementos y Interés Simple</h3>
+      <p>En toda operación financiera intervienen: Capital inicial ($C_i$), Capital final ($C_f$), Tiempo ($n$) y Tasa ($r$).</p>
+      <div class="formula-box">
+        Interés: I = C_f - C_i = C_i · n · r<br>
+        Capital Final Simple: C_f = C_i · (1 + n · r)
+      </div>
+      <p>El interés simple genera un crecimiento <strong>lineal</strong> (progresión aritmética).</p>
+
+      <h3 style="margin-top: 15px;">2. Interés Compuesto y Capitalización</h3>
+      <p>Los intereses de cada período se suman al capital para generar nuevos intereses.</p>
+      <div class="formula-box">
+        Capital Final Compuesto: C_f = C_i · (1 + r)^n<br>
+        Interés Producido: I = C_i · [(1 + r)^n - 1]
+      </div>
+      <p>El interés compuesto genera un crecimiento <strong>exponencial</strong> (progresión geométrica).</p>
+
+      <h3 style="margin-top: 15px;">3. Tasas Proporcionales, TNA y TEA</h3>
+      <p>La <strong>TNA</strong> (Tasa Nominal Anual) es la tasa proporcional enunciada ($r^{(m)} = m \cdot r$). La <strong>TEA</strong> (Tasa Efectiva Anual) es el rendimiento real en interés compuesto:</p>
+      <div class="formula-box">
+        TEA = (1 + r)^m - 1
+      </div>
+
+      <h3 style="margin-top: 15px;">4. Cálculo del Tiempo</h3>
+      <div class="formula-box">
+        t = [log(C_f) - log(C_i)] / log(1 + r)
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const progress = JSON.parse(localStorage.getItem('m1_progress')) || { c1: false, c2: false, c3: false, c4: false };
+
+    function init() {
+      for (let i = 1; i <= 4; i++) {
+        if (progress[`c${i}`]) {
+          markUnlocked(i);
+        }
+      }
+      checkGlobalVictory();
+    }
+
+    function checkCode(id, target) {
+      const val = document.getElementById(`code-${id}`).value.trim();
+      const fb = document.getElementById(`fb-${id}`);
+
+      if (val === target) {
+        fb.className = "feedback success";
+        fb.innerText = "¡Correcto! Candado abierto.";
+        progress[`c${id}`] = true;
+        localStorage.setItem('m1_progress', JSON.stringify(progress));
+        markUnlocked(id);
+        checkGlobalVictory();
+      } else {
+        fb.className = "feedback error";
+        fb.innerText = "Código incorrecto. Revisá las fórmulas en el Manual.";
+      }
+    }
+
+    function markUnlocked(id) {
+      document.getElementById(`card-${id}`).classList.add('unlocked');
+      document.getElementById(`status-${id}`).innerText = "✅";
+      document.getElementById(`code-${id}`).disabled = true;
+    }
+
+    function checkGlobalVictory() {
+      if (progress.c1 && progress.c2 && progress.c3 && progress.c4) {
+        document.getElementById('victory-banner').style.display = 'block';
+        localStorage.setItem('mundo1_completed', 'true');
+        localStorage.setItem('clave1', 'ALPHA-7959');
+      }
+    }
+
+    function openModal() { document.getElementById('theory-modal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('theory-modal').style.display = 'none'; }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
