@@ -9,29 +9,17 @@
 <section class="hero" aria-label="Inicio de Finanzas 360 grados">
 <img alt="Ilustración de FINANZAS 360°: estudiantes, una bóveda futurista y cinco mundos de desafíos financieros" src="img/finanzas360.png">
 <a class="hotspot start" href="#mundos" aria-label="Empezar la aventura y conocer los mundos"></a>
-<button class="hotspot world w1" aria-label="Abrir mundo 1: El código del tiempo" onclick="openMission(0)"></button>
-<button class="hotspot world w2" aria-label="Abrir mundo 2: La bóveda digital" onclick="openMission(1)"></button>
-<button class="hotspot world w3" aria-label="Abrir mundo 3: El laboratorio de ecuaciones" onclick="openMission(2)"></button>
-<button class="hotspot world w4" aria-label="Abrir mundo 4: El negocio imposible" onclick="openMission(3)"></button>
-<button class="hotspot world w5" aria-label="Abrir mundo 5: La salida" onclick="openMission(4)"></button>
+<button class="hotspot world w1" aria-label="Abrir mundo 1: El código del tiempo" onclick="window.location.href='https://sites.google.com/view/finanzas360-/mundo01'"></button>
+<button class="hotspot world w2" aria-label="Abrir mundo 2: La bóveda digital" onclick="window.location.href='https://sites.google.com/view/finanzas360-/mundo02'"></button>
+<button class="hotspot world w3" aria-label="Abrir mundo 3: El laboratorio de ecuaciones" onclick="window.location.href='https://sites.google.com/view/finanzas360-/mundo03'"></button>
+<button class="hotspot world w4" aria-label="Abrir mundo 4: El negocio imposible" onclick="window.location.href='https://sites.google.com/view/finanzas360-/mundo04'"></button>
+<button class="hotspot world w5" aria-label="Abrir mundo 5: La salida" onclick="window.location.href='https://sites.google.com/view/finanzas360-/resumen'"></button>
 </section>
 <div class="note">Cinco mundos. Un objetivo: <strong>resolver los desafíos, tomar decisiones y escapar.</strong><br>Elegí una misión y poné a prueba tu estrategia financiera.</div>
-<!--<section class="worlds" id="mundos" aria-label="Los cinco mundos">
-<article class="card"><div class="kicker">MUNDO 01</div><h2>El código del tiempo</h2><p>Interés simple y compuesto. ¿Qué estrategia hace crecer más tu capital?</p><button onclick="openMission(0)">Entrar a la misión ↗</button></article>
-<article class="card"><div class="kicker">MUNDO 02</div><h2>La bóveda digital</h2><p>Cajas de ahorro, billeteras virtuales, porcentajes y descuentos.</p><button onclick="openMission(1)">Entrar a la misión ↗</button></article>
-<article class="card"><div class="kicker">MUNDO 03</div><h2>El laboratorio de ecuaciones</h2><p>Compará planes y encontrá qué opción conviene según el uso.</p><button onclick="openMission(2)">Entrar a la misión ↗</button></article>
-<article class="card"><div class="kicker">MUNDO 04</div><h2>El negocio imposible</h2><p>Usá funciones para calcular costos, ingresos y punto de equilibrio.</p><button onclick="openMission(3)">Entrar a la misión ↗</button></article>
-<article class="card"><div class="kicker">MUNDO 05</div><h2>La salida</h2><p>Combiná porcentajes, ecuaciones y gráficos para superar el desafío final.</p><button onclick="openMission(4)">Entrar a la misión ↗</button></article>
-</section> -->
 </main>
 <footer>FINANZAS 360° <span>∞</span> Matemática Financiera · Pensá · Calculá · Decidí · Escapá</footer>
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="if(event.target===this)closeMission()"><div class="dialog"><button class="close" aria-label="Cerrar" onclick="closeMission()">×</button><div class="kicker" id="modalKicker">MISIÓN</div><h2 id="modalTitle">El desafío</h2><p id="modalDesc"></p><div id="challenge"></div><p class="feedback" id="feedback" aria-live="polite"></p><div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:15px;">
   <button class="backtop" onclick="closeMission()">Volver al mapa</button>
-
-  <button class="backtop" id="btnAvanzar"
-    onclick="window.location.href='https://sites.google.com/view/finanzas360-/mundo01'"
-    style="border-color:#32f59b;">
-    Avanzar →
-  </button>
+  <button class="backtop" id="btnAvanzar" style="border-color:#32f59b;">Avanzar →</button>
 </div></div></div>
 <script src="misiones.js" defer></script></body></html>

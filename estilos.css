@@ -18,3 +18,4 @@ footer{text-align:center;padding:25px 15px;border-top:1px solid #16335a;color:#9
 @media(max-width:900px){.worlds{grid-template-columns:repeat(2,minmax(0,1fr))}.card:last-child{grid-column:1/-1}.world{top:69%;height:24%}.start{top:51%;height:7.5%}}
 @media(max-width:540px){.worlds{grid-template-columns:1fr}.card:last-child{grid-column:auto}.note{font-size:.9rem}.hero .world{height:23%}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+```[cite: 1]
